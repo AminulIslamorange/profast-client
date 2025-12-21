@@ -1,4 +1,6 @@
 import Banner from "./Banner/Banner";
+import Benefits from "./Benefit/Benefits";
+import ClientLogo from "./ClientLogo/ClientLogo";
 import HowItsWork from "./HowItsWork/HowItsWork";
 import Services from "./Services/Services";
 
@@ -9,6 +11,8 @@ const Home = () => {
             <Banner></Banner>
             <HowItsWork></HowItsWork>
             <Services></Services>
+            <ClientLogo></ClientLogo>
+            <Benefits></Benefits>
         </div>
     );
 };
