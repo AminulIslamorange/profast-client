@@ -1,3 +1,4 @@
+import BeMarcent from "../BeMarcent/BeMarcent";
 import Banner from "./Banner/Banner";
 import Benefits from "./Benefit/Benefits";
 import ClientLogo from "./ClientLogo/ClientLogo";
@@ -13,6 +14,7 @@ const Home = () => {
             <Services></Services>
             <ClientLogo></ClientLogo>
             <Benefits></Benefits>
+            <BeMarcent></BeMarcent>
         </div>
     );
 };
