@@ -1,32 +1,15 @@
-import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { Link } from 'react-router';
 
 const Login = () => {
-    // const {signInUser}=useAuth();
-  const location=useLocation();
-  const navigate=useNavigate();
-     const from = location.state?.from?.pathname || "/";
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+     const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const onSubmit = (data) => {
-    signInUser(data.email,data.password)
-    .then(result=>{
-      const user=result.user
-      console.log(user)
-      navigate(from);
-    })
-    .catch(error=>console.error(error))
-
-    console.log(data);
-    
-  };
+    const onSubmit = data => {
+        console.log(data);
+    }
     return (
-        <div className="w-full max-w-xs mx-auto">
+           <div className="w-full max-w-xs mx-auto">
       {/* --- Title section --- */}
       <div className="text-center mb-6">
         <h3 className="text-3xl font-bold">Welcome Back</h3>
@@ -75,9 +58,9 @@ const Login = () => {
             Login
           </button>
         </fieldset>
-          <p>New Hare?Create an Account<Link to='/signUp' className="mx-1 underline text-purple-600">Sign UP</Link></p>
+          <p>New Hare?Create an Account<Link to='/register' className="mx-1 underline text-purple-600">Sign UP</Link></p>
       </form>
-      <SocialLogin></SocialLogin>
+      
     </div>
     );
 };
