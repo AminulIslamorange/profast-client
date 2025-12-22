@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 
 import { Link } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Register = () => {
     const {createUser}=useAuth();
@@ -51,6 +52,7 @@ const Register = () => {
                                 </fieldset>
                                   <p>Have  an Account?<Link to='/login' className="mx-1 underline text-purple-600">Login</Link></p>
                               </form>
+                              <SocialLogin></SocialLogin>
                 
             </div>
         </div>
