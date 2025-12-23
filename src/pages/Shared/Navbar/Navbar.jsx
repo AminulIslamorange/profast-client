@@ -1,20 +1,28 @@
 import { Link, NavLink } from "react-router-dom";
 import ProFastLogo from "../ProfastLogo";
+import useAuth from "../../../hooks/useAuth";
 
 
 const Navbar = () => {
+  const {user,logOut}=useAuth();
     const navItem = (
     <>
       <li><NavLink to="/">Home</NavLink></li>
       <li><NavLink to="/services">Services</NavLink></li>
       <li><NavLink to="/coverage">Coverage</NavLink></li>
       <li><NavLink to="/sendParcel">Send Parcel</NavLink></li>
-      {/* {user && <li><NavLink to="/dashboard">Dashboard</NavLink></li>} */}
+      {user && <li><NavLink to="/dashboard">Dashboard</NavLink></li>}
       <li><NavLink to="/">About Us</NavLink></li>
       <li><NavLink to="/">Pricing</NavLink></li>
       <li><NavLink to="/beARider">Be a Rider</NavLink></li>
     </>
+    
   );
+  const handleLogOut = () => {
+    logOut()
+      .then()
+      .catch(error => console.error(error));
+  };
     return (
          <div className="navbar bg-base-100 shadow-sm">
       {/* Navbar Start */}
@@ -57,7 +65,7 @@ const Navbar = () => {
 
       {/* Navbar End */}
       <div className="navbar-end">
-        {/* {user ? (
+        {user ? (
           <button className="btn mr-2" onClick={handleLogOut}>
             Logout
           </button>
@@ -65,7 +73,7 @@ const Navbar = () => {
           <Link to="/login" className="btn mr-2">
             Sign In
           </Link>
-        )} */}
+        )}
         <Link to="/beARider" className="btn bg-[#CAEB66]">
           Be a rider
         </Link>
