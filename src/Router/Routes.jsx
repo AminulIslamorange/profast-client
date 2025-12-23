@@ -5,6 +5,8 @@ import AuthLayout from "../Layout/AuthLayout";
 import Login from "../pages/Authentication/Login/Login";
 import Register from "../pages/Authentication/Register/Register";
 import Coverage from "../pages/Coverage/Coverage";
+import SendParcel from "../pages/SendParcel/SendParcel";
+import PrivetRoutes from "./PrivetRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +20,11 @@ export const router = createBrowserRouter([
         {
           path:'/coverage',
           element:<Coverage></Coverage>,
+          loader:()=>fetch('serviceCenter.json')
+        },
+        {
+          path:'/sendParcel',
+          element:<PrivetRoutes><SendParcel></SendParcel></PrivetRoutes>,
           loader:()=>fetch('serviceCenter.json')
         }
     ]
