@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import { useForm } from "react-hook-form";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const generateTrackingID = () => {
     const date = new Date();
@@ -18,7 +19,7 @@ const SendParcel = () => {
         formState: { errors },
     } = useForm();
     const { user } = useAuth();
-    // const axiosSecure=useAxiosSecure();
+    const axiosSecure=useAxiosSecure();
 
     const serviceCenters = useLoaderData();
     // Extract unique regions
