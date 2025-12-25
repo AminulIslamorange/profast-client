@@ -2,11 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 
 const MyParcels = () => {
     const {user}=useAuth();
     const axiosSecure=useAxiosSecure();
+    const navigate=useNavigate();
     const { isPending, data:parcels=[],refetch} = useQuery({
     queryKey: ['my-parcels',user.email],
     queryFn: async()=>{
@@ -29,6 +31,7 @@ const MyParcels = () => {
     const handlePay = (id) => {
         console.log("Proceed to payment for", id);
         // Implement your payment logic
+        navigate(`/dashboard/payment/${id}`)
     };
 
     const handleDelete = async (id) => {
@@ -45,7 +48,7 @@ const MyParcels = () => {
         if (confirm.isConfirmed) {
             try {
                 
-                axiosSecure.delete(`/parcels/${id}`)
+                axiosSecure.delete(`/parcels/${id}?email=${user.email}`)
                     .then(res => {
                         console.log(res.data);
                         if (res.data.deletedCount) {
@@ -68,7 +71,7 @@ const MyParcels = () => {
     };
 
     const formatDate = (iso) => {
-        return new Date(iso).toLocaleString(); // Format: "6/22/2025, 3:11:31 AM"
+        return new Date(iso).toLocaleString(); 
     };
 
 
@@ -91,7 +94,7 @@ const MyParcels = () => {
                     {parcels.map((parcel, index) => (
                         <tr key={parcel._id}>
                             <td>{index + 1}</td>
-                            <td className="max-w-[180px] truncate">{parcel.title}</td>
+                            <td className="max-w-45 truncate">{parcel.title}</td>
                             <td className="capitalize">{parcel.type}</td>
                             <td>{formatDate(parcel.creation_date)}</td>
                             <td>৳{parcel.cost}</td>

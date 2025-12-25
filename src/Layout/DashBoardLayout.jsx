@@ -77,7 +77,7 @@ const DashBoardLayout = () => {
           </li>
 
           <li>
-            <Link to="/dashboard/paymentHistory" className="rounded-lg flex items-center gap-2">
+            <Link to="/dashboard/payment" className="rounded-lg flex items-center gap-2">
               <FiClock /> Payment History
             </Link>
           </li>
