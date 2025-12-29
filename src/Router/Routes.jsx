@@ -10,6 +10,8 @@ import PrivetRoutes from "./PrivetRoutes";
 import DashBoardLayout from "../Layout/DashBoardLayout";
 import MyParcels from "../pages/DashBoard/MyParcels/MyParcels";
 import Payment from "../pages/DashBoard/Payment/Payment";
+import PaymentHistory from "../pages/DashBoard/PaymentHistory/PaymentHistory";
+import TrackParcel from "../pages/DashBoard/TrackParcel/TrackParcel";
 
 export const router = createBrowserRouter([
   {
@@ -62,6 +64,14 @@ export const router = createBrowserRouter([
       {
         path:'payment/:parcelId',
         element:<Payment></Payment>
+      },
+      {
+        path:'paymentHistory',
+        element:<PaymentHistory></PaymentHistory>
+      },
+      {
+        path:'trackParcel',
+        element:<TrackParcel></TrackParcel>
       }
 
     ]
