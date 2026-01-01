@@ -12,6 +12,7 @@ import { MdOutlineRoute } from "react-icons/md";
 import { TbRouteOff } from "react-icons/tb";
 
 import ProFastLogo from "../pages/Shared/ProfastLogo";
+import { FaMotorcycle } from "react-icons/fa";
 
 const DashBoardLayout = () => {
  
@@ -88,6 +89,24 @@ const DashBoardLayout = () => {
               <FiMapPin /> Track a Package
             </Link>
           </li>
+           <li>
+              <Link
+                to="/dashboard/pendingRider"
+                className="rounded-lg flex items-center gap-2"
+              >
+                <TbRouteOff className="text-yellow-500 text-lg" />
+                Pending Rider
+              </Link>
+            </li>
+          <li>
+  <Link
+    to="/dashboard/activeRider"
+    className="rounded-lg flex items-center gap-2"
+  >
+    <FaMotorcycle className="text-yellow-500 text-lg" />
+    Active Rider
+  </Link>
+</li>
 
           {/* { !roleLoading && role==='admin' && <>  <li>
             <Link
