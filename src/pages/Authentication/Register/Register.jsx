@@ -6,9 +6,11 @@ import useAuth from '../../../hooks/useAuth';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import axios from 'axios';
 import { useState } from 'react';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
 
 const Register = () => {
     const {createUser,updateUserProfile}=useAuth();
+    const axiosPublic=useAxiosPublic();
     const [profilePic, setProfilePic] = useState('');
      const { register, handleSubmit, formState: { errors } } = useForm();
      const location =useLocation();
@@ -19,9 +21,18 @@ const Register = () => {
     const onSubmit = data => {
         console.log(data);
         createUser(data.email, data.password)
-            .then(result => {
+            .then(async(result) => {
                 console.log(result.user)
                 // update user on the database
+                 const userInfo = {
+                    email: data.email,
+                    role: 'user', // default role
+                    created_at: new Date().toISOString(),
+                    last_log_in: new Date().toISOString()
+                }
+                 const userRes = await axiosPublic.post('/users', userInfo);
+                console.log(userRes.data);
+
 
 
                 // update user profile in firebase
