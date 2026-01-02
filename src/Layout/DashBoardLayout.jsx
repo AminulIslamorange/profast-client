@@ -13,8 +13,10 @@ import { TbRouteOff } from "react-icons/tb";
 
 import ProFastLogo from "../pages/Shared/ProfastLogo";
 import { FaMotorcycle } from "react-icons/fa";
+import useUserRole from "../hooks/useUserRole";
 
 const DashBoardLayout = () => {
+  const {role,roleLoading}=useUserRole();
  
   return (
     <div className="drawer lg:drawer-open min-h-screen">
@@ -89,7 +91,7 @@ const DashBoardLayout = () => {
               <FiMapPin /> Track a Package
             </Link>
           </li>
-           <li>
+           {/* <li>
               <Link
                 to="/dashboard/pendingRider"
                 className="rounded-lg flex items-center gap-2"
@@ -107,8 +109,14 @@ const DashBoardLayout = () => {
     Active Rider
   </Link>
 </li>
+ <li>
+              <Link to="/dashboard/makeAdmin" className="rounded-lg flex items-center gap-2">
+                <FiUser /> Make Admin
+              </Link>
+            </li> */}
 
-          {/* { !roleLoading && role==='admin' && <>  <li>
+
+          { !roleLoading && role==='admin' && <>  <li>
             <Link
               to="/dashboard/activeRider"
               className="rounded-lg flex items-center gap-2"
@@ -132,7 +140,7 @@ const DashBoardLayout = () => {
                 <FiUser /> Make Admin
               </Link>
             </li>
-          </>} */}
+          </>}
 
           <li>
             <a className="rounded-lg flex items-center gap-2">
