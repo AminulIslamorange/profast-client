@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import { useForm } from "react-hook-form";
@@ -20,6 +20,7 @@ const SendParcel = () => {
     } = useForm();
     const { user } = useAuth();
     const axiosSecure=useAxiosSecure();
+    const navigate = useNavigate();
 
     const serviceCenters = useLoaderData();
     // Extract unique regions
@@ -114,6 +115,7 @@ const SendParcel = () => {
                                 timer: 1500,
                                 showConfirmButton: false,
                             });
+                             navigate('/dashboard/myParcels')
                         }
                     })
 

@@ -38,6 +38,7 @@ const PendingRiders = () => {
                 status,email
             });
 
+            
             refetch();
 
             Swal.fire("Success", `Rider ${action}d successfully`, "success");

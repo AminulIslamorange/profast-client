@@ -6,25 +6,24 @@ import {
   FiMapPin,
   FiUser,
   FiUsers,
-  FiSettings
+  FiSettings,
 } from "react-icons/fi";
-import { MdOutlineRoute } from "react-icons/md";
+import { MdOutlineRoute, MdPendingActions } from "react-icons/md";
 import { TbRouteOff } from "react-icons/tb";
 
 import ProFastLogo from "../pages/Shared/ProfastLogo";
-import { FaMotorcycle } from "react-icons/fa";
+import { FaMotorcycle, FaUserCheck } from "react-icons/fa";
 import useUserRole from "../hooks/useUserRole";
 
 const DashBoardLayout = () => {
-  const {role,roleLoading}=useUserRole();
- 
+  const { role, roleLoading } = useUserRole();
+
   return (
     <div className="drawer lg:drawer-open min-h-screen">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
 
       {/* MAIN CONTENT AREA */}
       <div className="drawer-content flex flex-col bg-base-100">
-
         {/* Mobile Navbar */}
         <div className="navbar bg-base-300 sticky top-0 z-50 lg:hidden">
           <div className="flex-none">
@@ -53,8 +52,9 @@ const DashBoardLayout = () => {
 
         {/* TOP FIXED SECTION */}
         <div className="p-4 lg:p-6">
-          <h1 className="text-2xl font-bold mb-4 text-center underline">Welcome to Dashboard</h1>
-          
+          <h1 className="text-2xl font-bold mb-4 text-center underline">
+            Welcome to Dashboard
+          </h1>
         </div>
 
         {/* PAGE ROUTE CONTENT */}
@@ -74,73 +74,90 @@ const DashBoardLayout = () => {
           </h2>
 
           <li>
-            <Link to="/dashboard/myParcels" className="rounded-lg flex items-center gap-2">
+            <Link
+              to="/dashboard/myParcels"
+              className="rounded-lg flex items-center gap-2"
+            >
               <FiPackage /> My Parcels
             </Link>
           </li>
 
           <li>
-            <Link to="/dashboard/paymentHistory" className="rounded-lg flex items-center gap-2">
+            <Link
+              to="/dashboard/paymentHistory"
+              className="rounded-lg flex items-center gap-2"
+            >
               <FiClock /> Payment History
             </Link>
           </li>
-         
 
           <li>
-            <Link to="/dashboard/trackParcel" className="rounded-lg flex items-center gap-2">
+            <Link
+              to="/dashboard/trackParcel"
+              className="rounded-lg flex items-center gap-2"
+            >
               <FiMapPin /> Track a Package
             </Link>
           </li>
-           {/* <li>
-              <Link
-                to="/dashboard/pendingRider"
-                className="rounded-lg flex items-center gap-2"
-              >
-                <TbRouteOff className="text-yellow-500 text-lg" />
-                Pending Rider
-              </Link>
-            </li>
-          <li>
-  <Link
-    to="/dashboard/activeRider"
-    className="rounded-lg flex items-center gap-2"
-  >
-    <FaMotorcycle className="text-yellow-500 text-lg" />
-    Active Rider
-  </Link>
-</li>
- <li>
-              <Link to="/dashboard/makeAdmin" className="rounded-lg flex items-center gap-2">
-                <FiUser /> Make Admin
-              </Link>
-            </li> */}
+          {/* for only rider */}
 
+          {!roleLoading && role === "rider" && (
+            <>
+             
+              <li>
+                <Link
+                  to="/dashboard/pendingDelivery"
+                  className="rounded-lg flex items-center gap-2"
+                >
+                  <MdPendingActions className="text-yellow-500 text-lg" />
+                  Pending Delivery
+                </Link>
+              </li>
+            </>
+          )}
 
-          { !roleLoading && role==='admin' && <>  <li>
-            <Link
-              to="/dashboard/activeRider"
-              className="rounded-lg flex items-center gap-2"
-            >
-              <MdOutlineRoute className="text-green-500 text-lg" />
-              Active Rider
-            </Link>
-          </li>
+          {/* for admin */}
 
-            <li>
-              <Link
-                to="/dashboard/pendingRider"
-                className="rounded-lg flex items-center gap-2"
-              >
-                <TbRouteOff className="text-yellow-500 text-lg" />
-                Pending Rider
-              </Link>
-            </li>
-            <li>
-              <Link to="/dashboard/makeAdmin" className="rounded-lg flex items-center gap-2">
-                <FiUser /> Make Admin
-              </Link>
-            </li>
-          </>}
+          {!roleLoading && role === "admin" && (
+            <>
+              {" "}
+              <li>
+                <Link
+                  to="/dashboard/activeRider"
+                  className="rounded-lg flex items-center gap-2"
+                >
+                  <MdOutlineRoute className="text-green-500 text-lg" />
+                  Active Rider
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/dashboard/pendingRider"
+                  className="rounded-lg flex items-center gap-2"
+                >
+                  <TbRouteOff className="text-yellow-500 text-lg" />
+                  Pending Rider
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/dashboard/assignRider"
+                  className="rounded-lg flex items-center gap-2"
+                >
+                  <FaUserCheck className="text-yellow-500 text-lg" />
+                  Assign Rider
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/dashboard/makeAdmin"
+                  className="rounded-lg flex items-center gap-2"
+                >
+                  <FiUser /> Make Admin
+                </Link>
+              </li>
+            </>
+          )}
 
           <li>
             <a className="rounded-lg flex items-center gap-2">

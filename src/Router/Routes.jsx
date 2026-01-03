@@ -13,9 +13,15 @@ import Payment from "../pages/DashBoard/Payment/Payment";
 import PaymentHistory from "../pages/DashBoard/PaymentHistory/PaymentHistory";
 import TrackParcel from "../pages/DashBoard/TrackParcel/TrackParcel";
 import BeARider from "../pages/DashBoard/BeARider/BeARider";
-import PendingRiders from "../pages/DashBoard/PendingRiders/PendingRiders";
+
 import ActiveRiders from "../pages/DashBoard/ActiveRiders/ActiveRiders";
 import MakeAdmin from "../pages/DashBoard/MakeAdmin/MakeAdmin";
+import Forbidden from "../pages/Forbidden/Forbidden";
+import AdminRoutes from "./AdminRoutes";
+import AssignRider from "../pages/DashBoard/AssignRider/AssignRider";
+import PendingRiders from "../pages/DashBoard/PendingRiders/PendingRiders";
+import RiderRoutes from "./RiderRoutes";
+import PendingDeleveries from "../pages/DashBoard/PendingDeleveries/PendingDeleveries";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +46,10 @@ export const router = createBrowserRouter([
           path:'/sendParcel',
           element:<PrivetRoutes><SendParcel></SendParcel></PrivetRoutes>,
           loader:()=>fetch('serviceCenter.json')
+        },
+        {
+          path:'/forbidden',
+          element:<Forbidden></Forbidden>
         }
     ]
   },
@@ -82,18 +92,30 @@ export const router = createBrowserRouter([
         path:'trackParcel',
         element:<TrackParcel></TrackParcel>
       },
+      // rider only routes
+      {
+        path:'pendingDelivery',
+        element:<RiderRoutes><PendingDeleveries></PendingDeleveries></RiderRoutes>
+      },
+
+      // admin only routes
       {path:'pendingRider',
-        element:<PendingRiders></PendingRiders>
+        element:<AdminRoutes> <PendingRiders></PendingRiders></AdminRoutes>
 
       },
       {
         path:'activeRider',
-        element:<ActiveRiders></ActiveRiders>
+        element:<AdminRoutes><ActiveRiders></ActiveRiders></AdminRoutes> 
 
       },
       {
         path:'makeAdmin',
-        element:<MakeAdmin></MakeAdmin>
+       
+        element:<AdminRoutes><MakeAdmin></MakeAdmin></AdminRoutes>
+      },
+      {
+        path:'assignRider',
+        element:<AdminRoutes><AssignRider></AssignRider></AdminRoutes>
       }
 
     ]
